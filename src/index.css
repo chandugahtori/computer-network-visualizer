@@ -100,6 +100,16 @@ All colors MUST be HSL.
     font-feature-settings: "rlig" 1, "calt" 1;
   }
   
+  /* Enhanced text visibility */
+  h1, h2, h3, h4, h5, h6, p, span, a, button, label, li {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  }
+  
+  .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6, 
+  .dark p, .dark span, .dark a, .dark button, .dark label, .dark li {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  }
+  
   /* Scrollbar styling */
   ::-webkit-scrollbar {
     width: 10px;
