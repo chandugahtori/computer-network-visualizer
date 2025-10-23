@@ -145,7 +145,7 @@ const Protocols = () => {
           <h1 className="text-5xl font-bold mb-4 text-gradient">
             Protocol Library
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl">
+          <p className="text-xl text-white max-w-2xl">
             Explore interactive visualizations of network protocols. Each protocol comes with step-by-step animations and detailed explanations.
           </p>
         </div>
