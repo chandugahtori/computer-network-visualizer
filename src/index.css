@@ -100,16 +100,6 @@ All colors MUST be HSL.
     font-feature-settings: "rlig" 1, "calt" 1;
   }
   
-  /* Enhanced text visibility */
-  h1, h2, h3, h4, h5, h6, p, span, a, button, label, li, div {
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7), 0 1px 3px rgba(0, 0, 0, 0.9);
-  }
-  
-  .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6, 
-  .dark p, .dark span, .dark a, .dark button, .dark label, .dark li, .dark div {
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95), 0 1px 4px rgba(0, 0, 0, 1);
-  }
-  
   /* Scrollbar styling */
   ::-webkit-scrollbar {
     width: 10px;
@@ -135,13 +125,12 @@ All colors MUST be HSL.
   }
   
   .glass-card {
-    @apply backdrop-blur-xl bg-card/90 border border-primary/20;
+    @apply backdrop-blur-xl bg-card/60 border border-primary/20;
     box-shadow: var(--glow-cyan);
   }
   
   .dark .glass-card {
-    @apply bg-card/95 border-primary/30;
-    box-shadow: 0 0 30px hsl(192 100% 50% / 0.4), 0 10px 40px rgba(0, 0, 0, 0.8);
+    @apply bg-card/80 border-primary/30;
   }
   
   .glow-text {
