@@ -7,10 +7,9 @@ export const StarfieldBackground = () => {
   
   return (
     <div 
-      className="fixed inset-0 w-full h-full pointer-events-none bg-center bg-no-repeat transition-all duration-500"
+      className="fixed inset-0 w-full h-full pointer-events-none bg-cover bg-center bg-no-repeat transition-all duration-500"
       style={{ 
         backgroundImage: `url(${isDark ? spaceBackgroundDark : spaceBackgroundLight})`,
-        backgroundSize: '100% 100%',
         filter: isDark ? "brightness(0.7)" : "brightness(0.9)"
       }}
     />
