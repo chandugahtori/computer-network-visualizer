@@ -1,5 +1,5 @@
-import spaceBackgroundDark from "@/assets/space-background-dark.png";
-import spaceBackgroundLight from "@/assets/space-background-light.png";
+import spaceBackgroundDark from "@/assets/space-background-dark.jpg";
+import spaceBackgroundLight from "@/assets/space-background-light.webp";
 import { useTheme } from "@/contexts/ThemeContext";
 
 export const StarfieldBackground = () => {
