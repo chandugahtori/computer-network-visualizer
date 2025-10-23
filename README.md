@@ -2,8 +2,7 @@
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/87be5d66-9cfb-4c3c-b3d5-d1b66171a70e
-
+**Live URL**: https://computernetworksprotocalsvisualizer.vercel.app/
 ## How can I edit this code?
 
 There are several ways of editing your application.
