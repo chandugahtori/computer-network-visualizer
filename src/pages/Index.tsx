@@ -50,7 +50,7 @@ const Index = () => {
             </motion.h1>
 
             <motion.p 
-              className="text-xl md:text-2xl text-white mb-12 max-w-2xl mx-auto"
+              className="text-xl md:text-2xl text-white drop-shadow-lg mb-12 max-w-2xl mx-auto"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4, duration: 0.8 }}
@@ -118,8 +118,8 @@ const Index = () => {
               <div className="inline-block p-4 rounded-full bg-gradient-to-br from-cyan-500 to-blue-500 mb-6 group-hover:rotate-12 transition-transform duration-300">
                 <Target className="h-8 w-8 text-white" />
               </div>
-              <h3 className="text-2xl font-bold mb-4">Interactive Learning</h3>
-              <p className="text-muted-foreground">
+              <h3 className="text-2xl font-bold mb-4 text-foreground">Interactive Learning</h3>
+              <p className="text-foreground/90">
                 Step through each protocol phase with play, pause, and speed controls. See exactly how data flows through networks.
               </p>
             </motion.div>
@@ -134,8 +134,8 @@ const Index = () => {
               <div className="inline-block p-4 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 mb-6 group-hover:rotate-12 transition-transform duration-300">
                 <Network className="h-8 w-8 text-white" />
               </div>
-              <h3 className="text-2xl font-bold mb-4">Visual Clarity</h3>
-              <p className="text-muted-foreground">
+              <h3 className="text-2xl font-bold mb-4 text-foreground">Visual Clarity</h3>
+              <p className="text-foreground/90">
                 Beautiful animations make complex protocols easy to understand. Perfect for students and educators.
               </p>
             </motion.div>
@@ -150,8 +150,8 @@ const Index = () => {
               <div className="inline-block p-4 rounded-full bg-gradient-to-br from-green-500 to-cyan-500 mb-6 group-hover:rotate-12 transition-transform duration-300">
                 <BookOpen className="h-8 w-8 text-white" />
               </div>
-              <h3 className="text-2xl font-bold mb-4">Deep Understanding</h3>
-              <p className="text-muted-foreground">
+              <h3 className="text-2xl font-bold mb-4 text-foreground">Deep Understanding</h3>
+              <p className="text-foreground/90">
                 Every step comes with detailed explanations. Learn not just what happens, but why it happens.
               </p>
             </motion.div>
@@ -164,7 +164,7 @@ const Index = () => {
             <h2 className="text-4xl font-bold mb-6 text-gradient">
               Ready to Master Network Protocols?
             </h2>
-            <p className="text-xl text-muted-foreground mb-8">
+            <p className="text-xl text-foreground/90 mb-8">
               Start exploring interactive visualizations of TCP, UDP, DNS, DHCP, and more.
             </p>
             <Link to="/protocols">

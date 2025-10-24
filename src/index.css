@@ -125,12 +125,13 @@ All colors MUST be HSL.
   }
   
   .glass-card {
-    @apply backdrop-blur-xl bg-card/60 border border-primary/20;
-    box-shadow: var(--glow-cyan);
+    @apply backdrop-blur-xl bg-card/90 border-2 border-primary/40;
+    box-shadow: var(--glow-cyan), 0 4px 6px -1px hsl(0 0% 0% / 0.3);
   }
   
   .dark .glass-card {
-    @apply bg-card/80 border-primary/30;
+    @apply bg-card/95 border-2 border-primary/50;
+    box-shadow: var(--glow-cyan), 0 4px 6px -1px hsl(0 0% 0% / 0.5);
   }
   
   .glow-text {
