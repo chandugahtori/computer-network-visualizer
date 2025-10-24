@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Network, Zap, BookOpen, Target } from "lucide-react";
 import { StarfieldBackground } from "@/components/StarfieldBackground";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { AudioPlayer } from "@/components/AudioPlayer";
 import { motion } from "framer-motion";
 
 const Index = () => {
@@ -11,7 +10,6 @@ const Index = () => {
     <div className="min-h-screen relative overflow-hidden">
       <StarfieldBackground />
       <ThemeToggle />
-      <AudioPlayer />
       
       <div className="relative z-10">
         {/* Hero Section */}
