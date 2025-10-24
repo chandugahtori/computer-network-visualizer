@@ -30,9 +30,10 @@ export const AudioPlayer = () => {
       if (isPlaying) {
         audioRef.current.pause();
       } else {
-        audioRef.current.play();
+        audioRef.current.play().catch(err => {
+          console.error('Audio play failed:', err);
+        });
       }
-      setIsPlaying(!isPlaying);
     }
   };
 
@@ -49,11 +50,14 @@ export const AudioPlayer = () => {
     
     if (audioRef.current) {
       audioRef.current.pause();
+      setIsPlaying(false);
       setCurrentTheme(newTheme);
       
       setTimeout(() => {
         if (audioRef.current && wasPlaying) {
-          audioRef.current.play();
+          audioRef.current.play().catch(err => {
+            console.error('Audio play failed:', err);
+          });
         }
       }, 100);
     }
