@@ -6,7 +6,6 @@ export const AudioPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [currentTheme, setCurrentTheme] = useState<'epic' | 'quest'>('epic');
-  const [hasInteracted, setHasInteracted] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const themes = {
@@ -24,28 +23,7 @@ export const AudioPlayer = () => {
     if (audioRef.current) {
       audioRef.current.volume = 0.5;
     }
-
-    const handleInteraction = () => {
-      if (!hasInteracted && audioRef.current) {
-        audioRef.current.play().catch(err => {
-          console.error('Audio play failed:', err);
-        });
-        setHasInteracted(true);
-      }
-    };
-
-    window.addEventListener('click', handleInteraction);
-    window.addEventListener('scroll', handleInteraction);
-    window.addEventListener('keydown', handleInteraction);
-    window.addEventListener('touchstart', handleInteraction);
-
-    return () => {
-      window.removeEventListener('click', handleInteraction);
-      window.removeEventListener('scroll', handleInteraction);
-      window.removeEventListener('keydown', handleInteraction);
-      window.removeEventListener('touchstart', handleInteraction);
-    };
-  }, [hasInteracted]);
+  }, []);
 
   const togglePlay = () => {
     if (audioRef.current) {
@@ -98,6 +76,7 @@ export const AudioPlayer = () => {
         <audio
           ref={audioRef}
           loop
+          autoPlay
           src={themes[currentTheme].src}
           onPlay={() => setIsPlaying(true)}
           onPause={() => setIsPlaying(false)}
