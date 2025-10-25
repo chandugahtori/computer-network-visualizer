@@ -22,6 +22,9 @@ export const AudioPlayer = () => {
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.volume = 0.5;
+      audioRef.current.play().catch(err => {
+        console.error('Audio autoplay failed:', err);
+      });
     }
   }, []);
 
