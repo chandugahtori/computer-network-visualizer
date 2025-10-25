@@ -20,7 +20,7 @@ export const StarfieldBackground = ({ variant = 'home' }: StarfieldBackgroundPro
       style={{ 
         backgroundImage: `url(${isDark ? darkImage : lightImage})`,
         filter: isDark ? "brightness(0.7)" : "brightness(0.9)",
-        backgroundAttachment: variant === 'protocols' ? 'scroll' : 'fixed',
+        backgroundAttachment: 'scroll',
       }}
     />
   );
