@@ -129,7 +129,7 @@ const protocols = [
 const Protocols = () => {
   return (
     <div className="min-h-screen relative overflow-hidden">
-      <StarfieldBackground />
+      <StarfieldBackground variant="protocols" />
       <ThemeToggle />
       
       <div className="container mx-auto px-4 py-8 relative z-10">
