@@ -3,7 +3,7 @@ import { Volume2, VolumeX, Music } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export const AudioPlayer = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(false);
   const [currentTheme, setCurrentTheme] = useState<'epic' | 'quest'>('epic');
   const [hasInteracted, setHasInteracted] = useState(false);
@@ -98,6 +98,7 @@ export const AudioPlayer = () => {
         <audio
           ref={audioRef}
           loop
+          autoPlay
           src={themes[currentTheme].src}
           onPlay={() => setIsPlaying(true)}
           onPause={() => setIsPlaying(false)}
