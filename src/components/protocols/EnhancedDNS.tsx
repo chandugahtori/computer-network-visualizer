@@ -133,7 +133,7 @@ export const EnhancedDNS = ({ currentStep, isPlaying }: EnhancedDNSProps) => {
       <canvas
         ref={canvasRef}
         className="w-full h-full cursor-pointer"
-        style={{ width: "100%", height: "400px" }}
+        style={{ width: "100%", height: "300px" }}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
       />

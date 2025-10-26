@@ -16,11 +16,15 @@ export const EnhancedGoBackN = ({ currentStep, isPlaying }: Props) => {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    canvas.width = 800;
-    canvas.height = 400;
+    canvas.width = canvas.offsetWidth * window.devicePixelRatio;
+    canvas.height = 300 * window.devicePixelRatio;
+    ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+
+    const width = canvas.offsetWidth;
+    const height = 300;
 
     // Clear canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, width, height);
 
     // Draw sender
     ctx.fillStyle = "hsl(192 100% 50%)";
@@ -143,7 +147,7 @@ export const EnhancedGoBackN = ({ currentStep, isPlaying }: Props) => {
 
   return (
     <div className="relative">
-      <canvas ref={canvasRef} className="w-full h-auto" />
+      <canvas ref={canvasRef} className="w-full" style={{ height: "300px" }} />
       <div
         ref={tooltipRef}
         className="absolute hidden bg-card/95 backdrop-blur-sm border border-primary/30 rounded-lg p-3 shadow-lg pointer-events-none"
