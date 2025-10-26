@@ -267,7 +267,7 @@ const ProtocolVisualization = () => {
               <p className="text-muted-foreground mb-6">{protocol.description}</p>
 
               {/* Canvas */}
-              <div className="bg-card/20 rounded-xl border border-primary/20 p-4 sm:p-8 mb-6 min-h-[300px] flex items-center justify-center">
+              <div className="bg-card/20 rounded-xl border border-primary/20 p-4 sm:p-8 mb-6 min-h-[400px] flex items-center justify-center">
                 <ProtocolComponent currentStep={currentStep} isPlaying={isPlaying} />
               </div>
 
