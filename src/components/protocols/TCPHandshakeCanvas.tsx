@@ -112,7 +112,7 @@ export const TCPHandshakeCanvas = ({ currentStep, isPlaying }: TCPHandshakeCanva
     <canvas
       ref={canvasRef}
       className="w-full h-full"
-      style={{ width: "100%", height: "400px" }}
+      style={{ width: "100%", height: "300px" }}
     />
   );
 };
