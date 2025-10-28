@@ -15,14 +15,10 @@ export const EnhancedHTTP = ({ currentStep, isPlaying }: Props) => {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    canvas.width = canvas.offsetWidth * window.devicePixelRatio;
-    canvas.height = 300 * window.devicePixelRatio;
-    ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+    canvas.width = 800;
+    canvas.height = 400;
 
-    const width = canvas.offsetWidth;
-    const height = 300;
-
-    ctx.clearRect(0, 0, width, height);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // Draw browser
     ctx.fillStyle = "hsl(192 100% 50%)";
@@ -164,5 +160,5 @@ export const EnhancedHTTP = ({ currentStep, isPlaying }: Props) => {
 
   }, [currentStep, isPlaying]);
 
-  return <canvas ref={canvasRef} className="w-full" style={{ height: "300px" }} />;
+  return <canvas ref={canvasRef} className="w-full h-auto" />;
 };

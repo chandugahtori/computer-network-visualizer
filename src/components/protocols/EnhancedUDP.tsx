@@ -15,41 +15,36 @@ export const EnhancedUDP = ({ currentStep, isPlaying }: Props) => {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    canvas.width = canvas.offsetWidth * window.devicePixelRatio;
-    canvas.height = 300 * window.devicePixelRatio;
-    ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+    canvas.width = 800;
+    canvas.height = 400;
 
-    const width = canvas.offsetWidth;
-    const height = 300;
-
-    ctx.clearRect(0, 0, width, height);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // Draw client
     ctx.fillStyle = "hsl(192 100% 50%)";
-    ctx.fillRect(50, height * 0.4, 100, 80);
+    ctx.fillRect(50, 150, 100, 100);
     ctx.fillStyle = "white";
     ctx.font = "bold 16px sans-serif";
     ctx.textAlign = "center";
-    ctx.fillText("Client", 100, height * 0.4 + 45);
+    ctx.fillText("Client", 100, 210);
 
     // Draw server
     ctx.fillStyle = "hsl(150 100% 50%)";
-    ctx.fillRect(width - 150, height * 0.4, 100, 80);
+    ctx.fillRect(650, 150, 100, 100);
     ctx.fillStyle = "hsl(225 30% 10%)";
-    ctx.fillText("Server", width - 100, height * 0.4 + 45);
+    ctx.fillText("Server", 700, 210);
 
     // Multiple packets flying
-    const centerY = height * 0.4 + 40;
     const packets = [
-      { id: 1, y: centerY - 30, progress: currentStep >= 0 ? 0.3 : 0 },
-      { id: 2, y: centerY - 10, progress: currentStep >= 1 ? 0.5 : 0 },
-      { id: 3, y: centerY + 10, progress: currentStep >= 2 ? 0.7 : 0 },
-      { id: 4, y: centerY + 30, progress: currentStep >= 3 ? 0.9 : 0 },
+      { id: 1, y: 160, progress: currentStep >= 0 ? 0.3 : 0 },
+      { id: 2, y: 190, progress: currentStep >= 1 ? 0.5 : 0 },
+      { id: 3, y: 220, progress: currentStep >= 2 ? 0.7 : 0 },
+      { id: 4, y: 250, progress: currentStep >= 3 ? 0.9 : 0 },
     ];
 
     packets.forEach((packet) => {
       if (packet.progress > 0) {
-        const x = 150 + ((width - 300) * packet.progress);
+        const x = 150 + (500 * packet.progress);
         
         // Packet
         ctx.fillStyle = "hsl(39 100% 50%)";
@@ -83,33 +78,33 @@ export const EnhancedUDP = ({ currentStep, isPlaying }: Props) => {
     if (currentStep >= 2) {
       ctx.fillStyle = "hsl(225 10% 65%)";
       ctx.font = "italic 14px sans-serif";
-      ctx.fillText("No ACK - Fire and Forget", width / 2, height - 30);
+      ctx.fillText("No ACK - Fire and Forget", 400, 320);
     }
 
     // Connection-less label
     ctx.fillStyle = "hsl(192 100% 50%)";
     ctx.font = "bold 16px sans-serif";
-    ctx.fillText("Connectionless", width / 2, 30);
+    ctx.fillText("Connectionless", 400, 50);
 
     // Draw dashed arrow
     ctx.strokeStyle = "hsl(225 10% 65%)";
     ctx.lineWidth = 2;
     ctx.setLineDash([10, 5]);
     ctx.beginPath();
-    ctx.moveTo(150, centerY);
-    ctx.lineTo(width - 150, centerY);
+    ctx.moveTo(150, 200);
+    ctx.lineTo(650, 200);
     ctx.stroke();
     ctx.setLineDash([]);
 
     ctx.beginPath();
-    ctx.moveTo(width - 150, centerY);
-    ctx.lineTo(width - 160, centerY - 5);
-    ctx.lineTo(width - 160, centerY + 5);
+    ctx.moveTo(650, 200);
+    ctx.lineTo(640, 195);
+    ctx.lineTo(640, 205);
     ctx.closePath();
     ctx.fillStyle = "hsl(225 10% 65%)";
     ctx.fill();
 
   }, [currentStep, isPlaying]);
 
-  return <canvas ref={canvasRef} className="w-full" style={{ height: "300px" }} />;
+  return <canvas ref={canvasRef} className="w-full h-auto" />;
 };
