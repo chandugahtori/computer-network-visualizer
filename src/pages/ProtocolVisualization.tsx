@@ -267,17 +267,17 @@ const ProtocolVisualization = () => {
               <p className="text-muted-foreground mb-6">{protocol.description}</p>
 
               {/* Canvas */}
-              <div className="bg-card/20 rounded-xl border border-primary/20 p-8 mb-6 min-h-[400px] flex items-center justify-center">
+              <div className="bg-card/20 rounded-xl border border-primary/20 p-4 sm:p-8 mb-6 min-h-[300px] flex items-center justify-center">
                 <ProtocolComponent currentStep={currentStep} isPlaying={isPlaying} />
               </div>
 
               {/* Controls */}
               <div className="space-y-4">
-                <div className="flex items-center gap-4">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-4">
                   <Button
                     size="lg"
                     onClick={() => setIsPlaying(!isPlaying)}
-                    className="bg-gradient-to-r from-primary to-secondary hover:opacity-90"
+                    className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 flex-1 sm:flex-none"
                   >
                     {isPlaying ? <Pause className="mr-2 h-5 w-5" /> : <Play className="mr-2 h-5 w-5" />}
                     {isPlaying ? "Pause" : "Play"}
@@ -291,6 +291,7 @@ const ProtocolVisualization = () => {
                       setIsPlaying(false);
                     }}
                     disabled={currentStep >= protocol.steps.length - 1}
+                    className="sm:w-auto"
                   >
                     <ChevronRight className="h-5 w-5" />
                   </Button>
@@ -302,6 +303,7 @@ const ProtocolVisualization = () => {
                       setCurrentStep(0);
                       setIsPlaying(false);
                     }}
+                    className="flex-1 sm:flex-none"
                   >
                     <RotateCcw className="mr-2 h-5 w-5" />
                     Reset
@@ -312,9 +314,11 @@ const ProtocolVisualization = () => {
                     variant="outline"
                     onClick={exportLogs}
                     disabled={simulationLog.length === 0}
+                    className="flex-1 sm:flex-none"
                   >
                     <Download className="mr-2 h-5 w-5" />
-                    Export Log
+                    <span className="hidden sm:inline">Export Log</span>
+                    <span className="sm:hidden">Export</span>
                   </Button>
                 </div>
 
