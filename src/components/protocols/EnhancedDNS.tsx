@@ -33,13 +33,18 @@ export const EnhancedDNS = ({ currentStep, isPlaying }: EnhancedDNSProps) => {
 
     ctx.clearRect(0, 0, width, height);
 
+    // Responsive sizing
+    const boxWidth = Math.min(70, width * 0.11);
+    const boxHeight = Math.min(50, height * 0.17);
+    const margin = Math.min(50, width * 0.07);
+
     // Draw client
-    const clientX = 80;
+    const clientX = margin + boxWidth / 2;
     const clientY = height / 2;
     ctx.shadowColor = "#00F0FF";
     ctx.shadowBlur = 20;
     ctx.fillStyle = "#00F0FF";
-    ctx.fillRect(clientX - 35, clientY - 25, 70, 50);
+    ctx.fillRect(clientX - boxWidth / 2, clientY - boxHeight / 2, boxWidth, boxHeight);
     ctx.shadowBlur = 0;
     ctx.fillStyle = "#0A0E27";
     ctx.font = "bold 12px sans-serif";
@@ -48,20 +53,20 @@ export const EnhancedDNS = ({ currentStep, isPlaying }: EnhancedDNSProps) => {
 
     // Draw DNS servers
     const servers = [
-      { x: width * 0.35, y: height * 0.3, label: "Resolver", color: "#AA00FF" },
-      { x: width * 0.55, y: height * 0.5, label: "Root", color: "#FF00AA" },
-      { x: width * 0.75, y: height * 0.7, label: "TLD", color: "#00FF88" },
+      { x: width * 0.4, y: height * 0.35, label: "Resolver", color: "#AA00FF" },
+      { x: width * 0.6, y: height * 0.5, label: "Root", color: "#FF00AA" },
+      { x: width * 0.8, y: height * 0.65, label: "TLD", color: "#00FF88" },
     ];
 
     servers.forEach((server) => {
       ctx.shadowColor = server.color;
       ctx.shadowBlur = 20;
       ctx.fillStyle = server.color;
-      ctx.fillRect(server.x - 35, server.y - 25, 70, 50);
+      ctx.fillRect(server.x - boxWidth / 2, server.y - boxHeight / 2, boxWidth, boxHeight);
       ctx.shadowBlur = 0;
       ctx.fillStyle = "#fff";
-      ctx.font = "bold 12px sans-serif";
-      ctx.fillText(server.label, server.x, server.y + 5);
+      ctx.font = "bold 11px sans-serif";
+      ctx.fillText(server.label, server.x, server.y + 4);
     });
 
     // Animate query flow

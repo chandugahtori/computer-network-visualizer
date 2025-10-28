@@ -33,14 +33,19 @@ export const EnhancedStopAndWait = ({ currentStep, isPlaying }: EnhancedStopAndW
 
     ctx.clearRect(0, 0, width, height);
 
+    // Responsive sizing
+    const boxWidth = Math.min(80, width * 0.12);
+    const boxHeight = Math.min(70, height * 0.23);
+    const margin = Math.min(60, width * 0.08);
+
     // Draw sender with glow
-    const senderX = 100;
+    const senderX = margin + boxWidth / 2;
     const senderY = height / 2;
     
     ctx.shadowColor = "#00F0FF";
     ctx.shadowBlur = 20;
     ctx.fillStyle = "#00F0FF";
-    ctx.fillRect(senderX - 40, senderY - 35, 80, 70);
+    ctx.fillRect(senderX - boxWidth / 2, senderY - boxHeight / 2, boxWidth, boxHeight);
     ctx.shadowBlur = 0;
     
     ctx.fillStyle = "#0A0E27";
@@ -51,13 +56,13 @@ export const EnhancedStopAndWait = ({ currentStep, isPlaying }: EnhancedStopAndW
     ctx.fillText("Ready", senderX, senderY + 15);
 
     // Draw receiver with glow
-    const receiverX = width - 100;
+    const receiverX = width - margin - boxWidth / 2;
     const receiverY = height / 2;
     
     ctx.shadowColor = "#00FF88";
     ctx.shadowBlur = 20;
     ctx.fillStyle = "#00FF88";
-    ctx.fillRect(receiverX - 40, receiverY - 35, 80, 70);
+    ctx.fillRect(receiverX - boxWidth / 2, receiverY - boxHeight / 2, boxWidth, boxHeight);
     ctx.shadowBlur = 0;
     
     ctx.fillStyle = "#0A0E27";
@@ -72,18 +77,19 @@ export const EnhancedStopAndWait = ({ currentStep, isPlaying }: EnhancedStopAndW
     ctx.shadowColor = "#00F0FF";
     ctx.shadowBlur = 10;
     ctx.beginPath();
-    ctx.moveTo(senderX + 40, senderY);
-    ctx.lineTo(receiverX - 40, receiverY);
+    ctx.moveTo(senderX + boxWidth / 2, senderY);
+    ctx.lineTo(receiverX - boxWidth / 2, receiverY);
     ctx.stroke();
     ctx.shadowBlur = 0;
 
     // Animate packet
     const progress = (currentStep % 5) / 4;
+    const packetYOffset = height * 0.12;
 
     if (currentStep >= 0 && currentStep < 2) {
       const packetProgress = Math.min(progress * 2, 1);
-      const packetX = senderX + 40 + (receiverX - senderX - 80) * packetProgress;
-      const packetY = senderY - 30;
+      const packetX = senderX + boxWidth / 2 + (receiverX - senderX - boxWidth) * packetProgress;
+      const packetY = senderY - packetYOffset;
       
       // Packet glow trail
       const gradient = ctx.createLinearGradient(packetX - 30, packetY, packetX, packetY);
@@ -121,8 +127,8 @@ export const EnhancedStopAndWait = ({ currentStep, isPlaying }: EnhancedStopAndW
 
     if (currentStep >= 3) {
       const ackProgress = Math.min((currentStep - 3) / 1, 1);
-      const ackX = receiverX - 40 - (receiverX - senderX - 80) * ackProgress;
-      const ackY = senderY + 30;
+      const ackX = receiverX - boxWidth / 2 - (receiverX - senderX - boxWidth) * ackProgress;
+      const ackY = senderY + packetYOffset;
       
       // ACK trail
       const gradient = ctx.createLinearGradient(ackX, ackY, ackX + 30, ackY);

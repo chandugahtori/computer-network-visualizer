@@ -33,14 +33,19 @@ export const EnhancedTCPHandshake = ({ currentStep, isPlaying }: EnhancedTCPHand
 
     ctx.clearRect(0, 0, width, height);
 
+    // Responsive sizing
+    const boxWidth = Math.min(90, width * 0.13);
+    const boxHeight = Math.min(70, height * 0.23);
+    const margin = Math.min(60, width * 0.08);
+
     // Draw client
-    const clientX = 100;
+    const clientX = margin + boxWidth / 2;
     const clientY = height / 2;
     
     ctx.shadowColor = "#00F0FF";
     ctx.shadowBlur = 20;
     ctx.fillStyle = "#00F0FF";
-    ctx.fillRect(clientX - 45, clientY - 35, 90, 70);
+    ctx.fillRect(clientX - boxWidth / 2, clientY - boxHeight / 2, boxWidth, boxHeight);
     ctx.shadowBlur = 0;
     
     ctx.fillStyle = "#0A0E27";
@@ -51,13 +56,13 @@ export const EnhancedTCPHandshake = ({ currentStep, isPlaying }: EnhancedTCPHand
     ctx.fillText("192.168.1.100", clientX, clientY + 15);
 
     // Draw server
-    const serverX = width - 100;
+    const serverX = width - margin - boxWidth / 2;
     const serverY = height / 2;
     
     ctx.shadowColor = "#AA00FF";
     ctx.shadowBlur = 20;
     ctx.fillStyle = "#AA00FF";
-    ctx.fillRect(serverX - 45, serverY - 35, 90, 70);
+    ctx.fillRect(serverX - boxWidth / 2, serverY - boxHeight / 2, boxWidth, boxHeight);
     ctx.shadowBlur = 0;
     
     ctx.fillStyle = "#fff";
@@ -72,17 +77,18 @@ export const EnhancedTCPHandshake = ({ currentStep, isPlaying }: EnhancedTCPHand
     ctx.shadowColor = "#AA00FF";
     ctx.shadowBlur = 10;
     ctx.beginPath();
-    ctx.moveTo(clientX + 45, clientY);
-    ctx.lineTo(serverX - 45, serverY);
+    ctx.moveTo(clientX + boxWidth / 2, clientY);
+    ctx.lineTo(serverX - boxWidth / 2, serverY);
     ctx.stroke();
     ctx.shadowBlur = 0;
 
-    const packetDistance = serverX - clientX - 90;
+    const packetDistance = serverX - clientX - boxWidth;
+    const packetYOffset = height * 0.13;
 
     // SYN
     if (currentStep === 0) {
-      const synX = clientX + 45 + packetDistance * 0.5;
-      const synY = clientY - 40;
+      const synX = clientX + boxWidth / 2 + packetDistance * 0.5;
+      const synY = clientY - packetYOffset;
       
       ctx.shadowColor = "#00F0FF";
       ctx.shadowBlur = 25;
@@ -111,7 +117,7 @@ export const EnhancedTCPHandshake = ({ currentStep, isPlaying }: EnhancedTCPHand
 
     // SYN-ACK
     if (currentStep === 1) {
-      const synAckX = serverX - 45 - packetDistance * 0.5;
+      const synAckX = serverX - boxWidth / 2 - packetDistance * 0.5;
       const synAckY = clientY;
       
       ctx.shadowColor = "#AA00FF";
@@ -141,8 +147,8 @@ export const EnhancedTCPHandshake = ({ currentStep, isPlaying }: EnhancedTCPHand
 
     // ACK
     if (currentStep === 2) {
-      const ackX = clientX + 45 + packetDistance * 0.5;
-      const ackY = clientY + 40;
+      const ackX = clientX + boxWidth / 2 + packetDistance * 0.5;
+      const ackY = clientY + packetYOffset;
       
       ctx.shadowColor = "#00FF88";
       ctx.shadowBlur = 25;

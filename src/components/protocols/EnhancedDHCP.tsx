@@ -33,13 +33,18 @@ export const EnhancedDHCP = ({ currentStep, isPlaying }: EnhancedDHCPProps) => {
 
     ctx.clearRect(0, 0, width, height);
 
+    // Responsive sizing
+    const boxWidth = Math.min(80, width * 0.12);
+    const boxHeight = Math.min(60, height * 0.2);
+    const margin = Math.min(60, width * 0.08);
+
     // Draw client
-    const clientX = 100;
+    const clientX = margin + boxWidth / 2;
     const clientY = height / 2;
     ctx.shadowColor = "#00F0FF";
     ctx.shadowBlur = 20;
     ctx.fillStyle = "#00F0FF";
-    ctx.fillRect(clientX - 40, clientY - 30, 80, 60);
+    ctx.fillRect(clientX - boxWidth / 2, clientY - boxHeight / 2, boxWidth, boxHeight);
     ctx.shadowBlur = 0;
     ctx.fillStyle = "#0A0E27";
     ctx.font = "bold 14px sans-serif";
@@ -47,12 +52,12 @@ export const EnhancedDHCP = ({ currentStep, isPlaying }: EnhancedDHCPProps) => {
     ctx.fillText("CLIENT", clientX, clientY + 5);
 
     // Draw DHCP server
-    const serverX = width - 100;
+    const serverX = width - margin - boxWidth / 2;
     const serverY = height / 2;
     ctx.shadowColor = "#00FF88";
     ctx.shadowBlur = 20;
     ctx.fillStyle = "#00FF88";
-    ctx.fillRect(serverX - 40, serverY - 30, 80, 60);
+    ctx.fillRect(serverX - boxWidth / 2, serverY - boxHeight / 2, boxWidth, boxHeight);
     ctx.shadowBlur = 0;
     ctx.fillStyle = "#0A0E27";
     ctx.font = "bold 14px sans-serif";
@@ -66,18 +71,19 @@ export const EnhancedDHCP = ({ currentStep, isPlaying }: EnhancedDHCPProps) => {
     ctx.shadowColor = "#00FF88";
     ctx.shadowBlur = 10;
     ctx.beginPath();
-    ctx.moveTo(clientX + 40, clientY);
-    ctx.lineTo(serverX - 40, serverY);
+    ctx.moveTo(clientX + boxWidth / 2, clientY);
+    ctx.lineTo(serverX - boxWidth / 2, serverY);
     ctx.stroke();
     ctx.shadowBlur = 0;
 
-    const packetDistance = serverX - clientX - 80;
+    const packetDistance = serverX - clientX - boxWidth;
+    const packetYSpacing = height * 0.08;
 
     const messages = [
-      { label: "DISCOVER", color: "#00F0FF", direction: "right", y: -35, info: "Broadcast | Transaction ID: 0x3d1d | Options: Requested IP" },
-      { label: "OFFER", color: "#AA00FF", direction: "left", y: -10, info: "Offered IP: 192.168.1.100 | Lease: 86400s | Gateway: 192.168.1.1" },
-      { label: "REQUEST", color: "#00F0FF", direction: "right", y: 15, info: "Requesting: 192.168.1.100 | Client ID: MAC" },
-      { label: "ACK", color: "#00FF88", direction: "left", y: 40, info: "Confirmed IP: 192.168.1.100 | DNS: 8.8.8.8" },
+      { label: "DISCOVER", color: "#00F0FF", direction: "right", y: -packetYSpacing * 1.5, info: "Broadcast | Transaction ID: 0x3d1d | Options: Requested IP" },
+      { label: "OFFER", color: "#AA00FF", direction: "left", y: -packetYSpacing * 0.5, info: "Offered IP: 192.168.1.100 | Lease: 86400s | Gateway: 192.168.1.1" },
+      { label: "REQUEST", color: "#00F0FF", direction: "right", y: packetYSpacing * 0.5, info: "Requesting: 192.168.1.100 | Client ID: MAC" },
+      { label: "ACK", color: "#00FF88", direction: "left", y: packetYSpacing * 1.5, info: "Confirmed IP: 192.168.1.100 | DNS: 8.8.8.8" },
     ];
 
     if (currentStep < 4) {
@@ -85,9 +91,9 @@ export const EnhancedDHCP = ({ currentStep, isPlaying }: EnhancedDHCPProps) => {
       
       let packetX;
       if (msg.direction === "right") {
-        packetX = clientX + 40 + packetDistance * 0.5;
+        packetX = clientX + boxWidth / 2 + packetDistance * 0.5;
       } else {
-        packetX = serverX - 40 - packetDistance * 0.5;
+        packetX = serverX - boxWidth / 2 - packetDistance * 0.5;
       }
       
       const packetY = clientY + msg.y;
@@ -120,8 +126,8 @@ export const EnhancedDHCP = ({ currentStep, isPlaying }: EnhancedDHCPProps) => {
       ctx.shadowColor = "#00FF88";
       ctx.shadowBlur = 20;
       ctx.fillStyle = "#00FF88";
-      ctx.font = "bold 14px sans-serif";
-      ctx.fillText("✓ IP: 192.168.1.100", clientX, clientY + 60);
+      ctx.font = "bold 12px sans-serif";
+      ctx.fillText("✓ IP: 192.168.1.100", clientX, clientY + boxHeight / 2 + 20);
       ctx.shadowBlur = 0;
     }
 
